@@ -17,12 +17,15 @@ function Main() {
 
   var amtRef = useRef(null);
   var pdRef = useRef(null);
+
+
   const handleAddPerson = () => {
     const name = document.getElementById("name").value;
     if (name.trim() !== "") {
       setNames([...names, name]);
     }
     document.getElementById("name").value = "";
+    setIsAddPrsDisabled(true);
   };
 
   const handleInputChange = (event) => {
@@ -76,6 +79,14 @@ function Main() {
     pdRef.current.value = "";
   };
 
+  const [isAddPrsDisabled, setIsAddPrsDisabled] = useState(true);
+
+  const handleIChange = (event) => {
+    const newName = event.target.value;
+    // setName(newName);
+    setIsAddPrsDisabled(newName.trim() === ""); // Update disabled state
+  };
+
   const isAddExpenseDisabled = !(
     inputs.amount &&
     inputs.paidBy &&
@@ -104,10 +115,10 @@ function Main() {
           <h2>Add Persons</h2>
           <div>
             <h3>Enter person's name:</h3>
-            <input type="text" id="name" placeholder="Enter Person Name" />
+            <input type="text" id="name" placeholder="Enter Person Name" onChange={handleIChange}/>
             <br />
             <br />
-            <button className="btns" onClick={handleAddPerson}>
+            <button className={`btns ${isAddPrsDisabled ? "disable":""}`} onClick={handleAddPerson}>
               Add
             </button>
           </div>
@@ -161,7 +172,7 @@ function Main() {
             ))}
           </div>
           <button
-            className="btnst"
+            className={`btnst ${isAddExpenseDisabled ? "disable":""}`}
             onClick={handleAddExpense}
             disabled={isAddExpenseDisabled}
           >

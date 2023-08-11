@@ -64,13 +64,18 @@ table {
 }
 
 .btnst {
+  margin-top: 15px;
   padding: 10px 20px;
   border-radius: 20px;
   border: none;
   background-color: #943866;
   color: rgb(255, 255, 255);
+  cursor: pointer;
+}
+
+.btnst.disable, .main .btns.disable{
+  pointer-events: none; 
   opacity: 0.5;
-  /* cursor: not-allowed; */
 }
 
 .main .btns {
