@@ -8,12 +8,14 @@ import "./styles.css";
 function Main() {
   const [names, setNames] = useState([]);
   const [expenses, setExpenses] = useState([]);
+  const [sumary,setSumary]=useState([]);
   const [inputs, setInputs] = useState({
     amount: "",
     paidBy: "",
     participants: []
   });
   const [e, setE] = useState(1);
+  const [x, setx] = useState(1);
 
   var amtRef = useRef(null);
   var pdRef = useRef(null);
@@ -42,7 +44,7 @@ function Main() {
       setInputs({ ...inputs, [id]: value });
     }
   };
-  // var e = 1;
+  // var x= 1;
   const handleAddExpense = () => {
     const { amount, paidBy, participants } = inputs;
     if (
@@ -56,22 +58,88 @@ function Main() {
       pdRef.current.value = paidBy;
       const share = (amountValue / participants.length).toFixed(2);
       const newExpenses = [...expenses];
+      var aaa=0;
+      var bbb=0;
       participants.forEach((participant) => {
         const index = names.indexOf(participant);
         if (participant === paidBy) {
           newExpenses[index] =
             (newExpenses[index] || 0) + share * (participants.length - 1);
+            aaa=share*(participants.length-1);
         } else {
           newExpenses[index] = (newExpenses[index] || 0) - share;
+          bbb=-share;
         }
       });
       setExpenses(newExpenses);
+
+      setSumary((prevSummary) => {
+        const updatedSummary = { ...prevSummary };
+      
+        const transaction = {};
+        participants.forEach((participant) => {
+          if (names.includes(participant)) {
+            if (participant === paidBy) {
+              transaction[participant] = aaa || 0;
+            } else {
+              transaction[participant] = bbb;
+            }
+          } else {
+            transaction[participant] = 0;
+          }
+        });
+      
+        const transactionName = `Transaction${x}(${inputs.amount})`;
+        updatedSummary.transactions = {
+          ...updatedSummary.transactions,
+          [transactionName]: transaction,
+        };
+      
+        var y = x + 1;
+        setx(y);
+        return updatedSummary;
+      });
+      
+      // setSumary((prevSummary) => {
+      //   const updatedSummary = { ...prevSummary };
+      
+      //   const transaction = {};
+      //   participants.forEach((participant) => {
+      //     if (names.includes(participant)) {
+      //       if (participant === paidBy) {
+      //         transaction[participant] = (aaa || 0) 
+      //         // transaction[participant] = aaa || 0;
+      //       }else{
+      //         transaction[participant]=bbb;
+      //       }
+      //     } else {
+      //       transaction[participant] = 0;
+      //     }
+      //   });
+      
+      //   const transactionName = `Transaction${x}`;
+      //   updatedSummary.transactions = [
+      //     {
+      //       [transactionName]: transaction
+      //     }
+      //   ];
+      //   var y=x+1;
+      // setx(y);
+      //   return updatedSummary;
+      // });
       setE((preve) => preve + 1);
       clr();
     } else {
       alert("Please enter valid values first");
     }
+    
   };
+
+  //   } else {
+  //     alert("Please enter valid values first");
+  //   }
+  // };
+  
 
   const clr = () => {
     setInputs({ amount: "", paidBy: "", participants: [] });
@@ -189,6 +257,51 @@ function Main() {
               </li>
             ))}
           </ol>
+          
+
+          <table>
+  <thead>
+    <tr>
+      <th>Transaction</th>
+      {names.map(name => (
+        <th key={name}>{name}</th>
+      ))}
+    </tr>
+  </thead>
+  
+  {sumary.transactions && (
+  <tbody>
+    {Object.entries(sumary.transactions).map(([transactionName, transactionDetails], index) => {
+      // console.log(transactionName, transactionDetails); // Add this line
+      return (
+        <tr key={index}>
+          <td>{transactionName}</td>
+          {names.map(name => (
+            <td key={name} 
+            className={transactionDetails[name] < 0 ? 'table-cell-negative' : 'table-cell-positive'}
+          >
+              {transactionDetails[name] !== undefined ? transactionDetails[name] : '0'}
+            </td>
+          ))}
+        </tr>
+      );
+    })}
+  </tbody>
+)}
+<tfoot>
+  <tr >
+    <td>Total</td>
+    {names.map((name, index) => (
+              <td key={index} className={expenses[index] < 0 ? 'table-cell-negative' : 'table-cell-positive'}>
+                {expenses[index] || 0}
+              </td>
+            ))}
+  </tr>
+</tfoot>
+
+</table>
+
+
         </div>
       </div>
       <div className="mnbtn">
