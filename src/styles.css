@@ -173,6 +173,11 @@ input {
   z-index: 1111;
 }
 
+footer a{
+  color:white;
+  text-decoration: none;
+}
+
 .cntprn {
   padding: 50px;
   width: 50%;
@@ -233,12 +238,58 @@ tr:hover {
   font-weight: bolder;
 }
 
+.ftrics{
+  margin:auto;
+  justify-content: center;
+}
+
+.ftrics a{
+  text-decoration: none;
+}
+
+.ftrics .col-md-6{
+  display: inline-flex;
+  justify-content: center;
+  gap:20px;
+  margin-bottom: 15px;
+}
+
+.ftrics svg{
+  width:50px;
+  height: auto;
+  gap:20px;
+}
+
 /* Responsive styles */
 @media (max-width: 768px) {
   .main{
-    margin:10px;
     width:85%;
   }
+
+  .about-container {
+    background-color: white;
+    padding: 50px 20px;
+  }
+
+  .about-content{
+    width:100%;
+    text-align: justify;
+  }
+
+  .cntprn {
+    padding: 20px;
+    width: auto;
+    margin:0px;
+  }
+
+.cntfrm input,
+.cntfrm textarea {
+  position: relative;
+  padding: 10px;
+  width: 90%;
+  background: white;
+}
+
   table {
     display: block;
     overflow-x: auto;
