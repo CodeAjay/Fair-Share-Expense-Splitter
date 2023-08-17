@@ -17,7 +17,7 @@ Welcome to FairShare! This React.js-based web application helps you simplify the
 
 ## Demo
 
-Check out the live Fair Share Expense Splitter App here: https://csb-2vbm5k.vercel.app/
+Check out the live Fair Share Expense Splitter App here: <a href="https://fair-share-expense.vercel.app/" target="_blank">Click here to check it out</a>
 
 ![image](https://github.com/CodeAjay/Fair-Share-Expense-Splitter/assets/58427577/93f166e0-eafe-4e06-8a71-b659c35565e2)
 
