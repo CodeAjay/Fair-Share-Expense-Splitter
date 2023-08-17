@@ -253,7 +253,13 @@ function Main() {
           <ol>
             {names.map((name, index) => (
               <li key={index}>
-                {name}: {expenses[index] || 0}
+                {name}                 {
+                  expenses[index]>0?(
+                    'Will Get'
+                  ):(
+                    'Have to pay'
+                  )
+                }: {expenses[index] || 0}
               </li>
             ))}
           </ol>
@@ -294,6 +300,22 @@ function Main() {
     {names.map((name, index) => (
               <td key={index} className={expenses[index] < 0 ? 'table-cell-negative' : 'table-cell-positive'}>
                 {expenses[index] || 0}
+              </td>
+            ))}
+  </tr>
+  
+  <tr >
+    <td>Summary</td>
+    {names.map((name, index) => (
+              <td key={index} className={expenses[index] < 0 ? 'table-cell-negative' : 'table-cell-positive'}>
+                {expenses[index] || 0} 
+                {
+                  expenses[index]>0?(
+                    <p>Recieve</p>
+                  ):(
+                    <p>Due</p>
+                  )
+                }
               </td>
             ))}
   </tr>
