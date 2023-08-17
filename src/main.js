@@ -1,10 +1,6 @@
 import React, { useState } from "react";
 import { useRef } from "react";
 import "./styles.css";
-// import Row from "react-bootstrap/Row";
-// import Col from "react-bootstrap/Col";
-// import Container from "react-bootstrap/Container";
-
 function Main() {
   const [names, setNames] = useState([]);
   const [expenses, setExpenses] = useState([]);
@@ -99,34 +95,7 @@ function Main() {
         setx(y);
         return updatedSummary;
       });
-      
-      // setSumary((prevSummary) => {
-      //   const updatedSummary = { ...prevSummary };
-      
-      //   const transaction = {};
-      //   participants.forEach((participant) => {
-      //     if (names.includes(participant)) {
-      //       if (participant === paidBy) {
-      //         transaction[participant] = (aaa || 0) 
-      //         // transaction[participant] = aaa || 0;
-      //       }else{
-      //         transaction[participant]=bbb;
-      //       }
-      //     } else {
-      //       transaction[participant] = 0;
-      //     }
-      //   });
-      
-      //   const transactionName = `Transaction${x}`;
-      //   updatedSummary.transactions = [
-      //     {
-      //       [transactionName]: transaction
-      //     }
-      //   ];
-      //   var y=x+1;
-      // setx(y);
-      //   return updatedSummary;
-      // });
+
       setE((preve) => preve + 1);
       clr();
     } else {
@@ -135,11 +104,6 @@ function Main() {
     
   };
 
-  //   } else {
-  //     alert("Please enter valid values first");
-  //   }
-  // };
-  
 
   const clr = () => {
     setInputs({ amount: "", paidBy: "", participants: [] });
@@ -171,13 +135,6 @@ function Main() {
   return (
     <>
       <div className="main">
-        {/* <Container>
-        <Row>
-          <Col sm={6}> */}
-
-        {/* </Col>
-        </Row>
-      </Container> */}
         <div className={`divs ${activeDiv === "adperson" ? "active" : ""}`}>
           <h1>Bills</h1>
           <h2>Add Persons</h2>
@@ -354,117 +311,3 @@ function Main() {
 }
 
 export default Main;
-
-// import React, { useState } from "react";
-// import { useRef } from "react";
-
-// function Main() {
-//   const [names, setNames] = useState([]);
-//   const [expenses, setExpenses] = useState([]);
-//   // const [aaa, setAaa] = useState();
-//   // const [pd, setPd] = useState();
-
-//   var amtRef = useRef(null);
-//   var pdRef = useRef(null);
-
-//   const handleAddPerson = () => {
-//     const name = document.getElementById("name").value;
-//     setNames([...names, name]);
-//     document.getElementById("name").value = "";
-//   };
-//   const handleAddExpense = () => {
-//     // if (amtRef != null && pdRef != null) {
-//     const amount = parseFloat(document.getElementById("amount").value);
-//     const paidBy = document.getElementById("paidBy").value;
-//     // setAaa(amount);
-//     // setPd(paidBy);
-//     amtRef.current.value = amount;
-//     pdRef.current.value = pdRef;
-//     const participants = names.filter(
-//       (name) => document.getElementById(name).checked
-//     );
-//     const share = (amount / participants.length).toFixed(2);
-//     const newExpenses = [...expenses];
-//     participants.forEach((participant) => {
-//       const index = names.indexOf(participant);
-//       if (participant == paidBy) {
-//         newExpenses[index] =
-//           (newExpenses[index] || 0) + share * (participants.length - 1);
-//       } else {
-//         newExpenses[index] = (newExpenses[index] || 0) - share;
-//       }
-//     });
-//     setExpenses(newExpenses);
-//     clr();
-//     // } else {
-//     //   alert("Please enter values first");
-//     // }
-//     // setAaa("");
-//     // setPd("");
-//     // participants = "";
-//   };
-//   const clr = () => {
-//     amtRef.current.value = "";
-//     pdRef.current.value = "";
-//     names.forEach((name) => {
-//       document.getElementById(name).checked = false;
-//     });
-//     console.log("clear function executed.");
-//   };
-
-//   return (
-//     <div>
-//       <h1>Bills</h1>
-//       <div>
-//         <h2>Add Persons</h2>
-//         <div>
-//           <h3>Enter person's name:</h3>
-//           <input type="text" id="name" />
-//           <button onClick={handleAddPerson}>Add</button>
-//         </div>
-//         <ul>
-//           {names.map((name, index) => (
-//             <li key={index}>{name}</li>
-//           ))}
-//         </ul>
-//       </div>
-//       <div>
-//         <h2>Expenses</h2>
-//         <div>
-//           <h3>Enter expense amount:</h3>
-//           <input type="number" id="amount" ref={amtRef} />
-//         </div>
-//         <div>
-//           <h3>Paid by:</h3>
-//           <select id="paidBy" ref={pdRef}>
-//             {names.map((name, index) => (
-//               <option key={index}>{name}</option>
-//             ))}
-//           </select>
-//         </div>
-//         <div>
-//           <h3>Participants:</h3>
-//           {names.map((name, index) => (
-//             <label key={index}>
-//               <input type="checkbox" id={name} />
-//               {name}
-//             </label>
-//           ))}
-//         </div>
-//         <button onClick={handleAddExpense}>Add Expense</button>
-//       </div>
-//       <div>
-//         <h2>Expenses Summary</h2>
-//         <ul>
-//           {names.map((name, index) => (
-//             <li key={index}>
-//               {name}: {expenses[index] || 0}
-//             </li>
-//           ))}
-//         </ul>
-//       </div>
-//     </div>
-//   );
-// }
-
-// export default Main;
